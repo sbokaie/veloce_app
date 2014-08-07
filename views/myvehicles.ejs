@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>My vehicles</title>
+</head>
+<body>
+	
+  <h1>My Vehicles</h1>
+  
+  		<% myvehicles.forEach(function(vehicle){ %>
+  		<!-- this is where all of our cars will go -->
+  		 
+  		 <ul style = "list-style:none;">Vehicle:
+  		 	<li>
+  		 	<%= vehicle.year%>
+  			<%= vehicle.make %>
+  			<%= vehicle.model%>
+  			<a href="/vehicle/<%= vehicle.id%>">More information</a>
+  			</li>
+  		</ul>	
+  		<% }) %>
+</body>
+</html>

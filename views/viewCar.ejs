@@ -1,1 +1,31 @@
-<h1>Inventory</h1>
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>View Vehicle</title>
+	</head>
+	<body>
+		<h1><%= vehicle.year%>
+  			<%= vehicle.make %>
+  			<%= vehicle.model%></h1>
+
+  		 	<p> Year:
+  		 		<%= vehicle.year%>
+  		 	</p>
+  			<p> Make:
+  				<%= vehicle.make %>
+  			</p>
+  			<p> Model:
+  				<%= vehicle.model%>
+  			</p>
+  			<p>
+  				<%= vehicle.description%>
+  			</p>
+
+  			<p>
+					<img style = "width:200px"  src="<%= vehicle.imageURL%>" alt="This is the car">
+  			</p>
+  						
+		<a href="/inventory">Go back to the inventory</a>
+	</body>
+</html>

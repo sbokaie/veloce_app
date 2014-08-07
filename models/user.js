@@ -1,45 +1,36 @@
 var bcrypt = require("bcrypt");
+var passport = require("passport");
+var passportLocal = require("passport-local");
 var salt = bcrypt.genSaltSync(10);
 
 module.exports = function (sequelize, DataTypes){
    var User = sequelize.define('user', {
      username: { 
-       type: DataTypes.STRING, 
-       unique: true, 
-         validate: {
-           len: [6, 30],
-         }
-     },
-     password: {
-     	type: DataTypes.STRING,
-     	validate: {
-     		notEmpty: true
-     	}
-     }
-   },
-   
-   {
-   classMethods: {
-     associate: function(db){
-     	 // console.log("associating vehicles with users");
-       User.hasMany(db.vehicle);
-     },
-     encryptPass: function(password) {
+        type: DataTypes.STRING, unique: true, allowNull: false, validate: {
+          len: [6, 30]
+        }
+    },
+    password: DataTypes.STRING
+    },
+    
+  {
+    classMethods: {
+      encryptPass: function(password) {
         var hash = bcrypt.hashSync(password, salt);
         return hash;
-     }, 
-     comparePass: function(userpass, dbpass) {
+    }, 
+      comparePass: function(userpass, dbpass) {
       // don't salt twice when you compare....watch out for this
-        return bcrypt.compareSync(userpass, dbpass);  
-     },
-     createNewUser:function(username, password, err, success ) {
+        return bcrypt.compareSync((userpass), dbpass);  
+    },
+      createNewUser:function(username, password, err, success ) {
         if(password.length < 6) {
           err({message: "Password should be more than six characters"});
         }
         else{
         User.create({
             username: username,
-            password: User.encryptPass(password)
+            password: this.encryptPass(password)
           }).error(function(error) {
             console.log(error);
             if(error.username){
@@ -49,12 +40,25 @@ module.exports = function (sequelize, DataTypes){
               err({message: 'An account with that username already exists', username: username});
               }
           }).success(function(user) {
-            success(user, {message: 'Account created, please log in now'});
+            success({message: 'Account created, please log in now'});
           });
         }
-      },
-      authorize: function(username, password, err, success) {
-     // find a user in the DB
+      },  
+    
+      } // close classMethods
+    } //close classMethods outer 
+
+  ); // close define user
+
+//tie login to passport in user model
+  passport.use(new passportLocal.Strategy({
+      usernameField: 'username',
+      passwordField: 'password',
+      passReqToCallback : true
+    },
+
+    function(req, username, password, done) {
+      // find a user in the DB
       User.find({
           where: {
             username: username
@@ -64,20 +68,17 @@ module.exports = function (sequelize, DataTypes){
         .done(function(error,user){
           if(error){
             console.log(error);
-            err({message: "Oops! Something went wrong"});
+            return done (err, req.flash('loginMessage', 'Oops! Something went wrong.'));
           }
-          else if (user === null){
-            err({message: "Username does not exist"});
+          if (user === null){
+            return done (null, false, req.flash('loginMessage', 'Username does not exist.'));
           }
-          else if ((User.comparePass(password, user.password)) === true){
-            success();
+          if ((User.comparePass(password, user.password)) !== true){
+            return done (null, false, req.flash('loginMessage', 'Invalid Password'));
           }
-          else {
-            err({message: "Invalid password"});
-          }
+          done(null, user); 
         });
-      }  
-   }
-   });
-   return User;
-};
+    }));
+      
+  return User;
+}; // close User function

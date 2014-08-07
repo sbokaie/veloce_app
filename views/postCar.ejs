@@ -5,8 +5,14 @@
 		<title>Document</title>
 	</head>
 	<body>
-		
+	
+	<h2>Car Image:</h2>
+<input type="file" id="files"/>
+<p id="status">Please select a file</p>
+<div style="border:1px solid gray; width:200px height:200px;"  id="preview"></div>
+
   <form action="/newcar" method = "post">
+  	<input type="hidden" id="avatar_url" name="avatar_url">
 	<p>
 		<label for="make">Make:</label>
 		<input type="text" name="make" id="make">
@@ -19,24 +25,59 @@
 
 	<p>	
 		<label for="year">Year:</label>
-		<input type="text" name="year" id="year">
+		<input type="number" name="year" id="year">
 	</p>
 
 	<p>	
 		<label for="description">Description:</label>
 		<textarea name="description" id="description" cols="30" rows="10"></textarea>
 	</p>
+	<input type="submit" value="Save car">
 
-	<p>	
-		<label for="imageURL">imageURL:</label>
-		<input type="text" name="imageURL" id="imageURL">
-	</p>
+</form>
+
+
+
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js">
 	
-	<input type="submit" value="Create new car">
+</script>
+<script type="text/javascript" src="/javascripts/lodash.min.js">
+	
+</script>
+<script type="text/javascript" src="/javascripts/s3upload.js">
+	
+</script>
+
+<script type="text/javascript">
+
+function s3_upload(){
+    var s3upload = new S3Upload({
+        file_dom_selector: '#files',
+        s3_sign_put_url: '/sign_s3',
+        onProgress: function(percent, message) {
+            $('#status').html('Upload progress: ' + percent + '% ' + message);
+        },
+        onFinishS3Put: function(public_url) {
+            $('#status').html('Upload completed. Uploaded to: '+ public_url);
+            $("#avatar_url").val(public_url);
+            $("#preview").html('<img src="'+public_url+'" style="width:300px;" />');
+        },
+        onError: function(status) {
+            $('#status').html('Upload error: ' + status);
+        }
+    });
+}
+
+$(document).ready(function() {
+    $('#files').on("change", s3_upload);
+});
+</script>
 
 
 
-	</form>
+
+	
 
 	</body>
 </html>

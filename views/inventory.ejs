@@ -4,32 +4,27 @@
 	<title>Your Inventory</title>
 </head>
 <body>
-  <h1>Your vehicles</h1>
+
+  <h1>Vehicles</h1>
   
   		<% vehicles.forEach(function(vehicle){ %>
   		<!-- this is where all of our cars will go -->
-  		<h1>Car <%= vehicle.id %> </h1>
-  		<p> Make:
+  		 
+  		 <ul style = "list-style:none;">Vehicle:
+  		 	<li>
+  		 	<%= vehicle.year%>
   			<%= vehicle.make %>
-  		</p>
-  		<p> Model:
   			<%= vehicle.model%>
-  		</p>	
-  		<p> Year:
-  			<%= vehicle.year%>
-  		</p>
-  		<p> Description:
-  			<%= vehicle.description %>
-  		</p>
-
-  		<p>
-  			Image:
-  			<img src="http://lorempixel.com/200/200" alt="Cats!">
-  		</p>
-
+  			<a href="/vehicle/<%= vehicle.id%>">More information</a>
+  			</li>
+  		</ul>	
   		<% }) %>
   
+  <% if (isAuthenticated) { %>
+  <h1><a href="/myvehicles/<%=user.id%>">My vehicles</a></h1>
   <h1>Add a new car <a href="/postCar">here:</a></h1>
+<h3><a href="/logout">Log out</a></h3>
+  <% } %>
 
 </body>
 </html>
