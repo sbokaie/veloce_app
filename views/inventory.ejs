@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Your Inventory</title>
+</head>
+<body>
+  <h1>Your vehicles</h1>
+  
+  		<% vehicles.forEach(function(vehicle){ %>
+  		<!-- this is where all of our cars will go -->
+  		<h1>Car <%= vehicle.id %> </h1>
+  		<p> Make:
+  			<%= vehicle.make %>
+  		</p>
+  		<p> Model:
+  			<%= vehicle.model%>
+  		</p>	
+  		<p> Year:
+  			<%= vehicle.year%>
+  		</p>
+  		<p> Description:
+  			<%= vehicle.description %>
+  		</p>
+
+  		<p>
+  			Image:
+  			<img src="http://lorempixel.com/200/200" alt="Cats!">
+  		</p>
+
+  		<% }) %>
+  
+  <h1>Add a new car <a href="/postCar">here:</a></h1>
+
+</body>
+</html>
