@@ -27,9 +27,11 @@ var AWS_ACCESS_KEY = process.env.AWS_ACCESS_KEY;
 var AWS_SECRET_KEY = process.env.AWS_SECRET_KEY;
 var S3_BUCKET = process.env.S3_BUCKET;
 
-console.log(AWS_ACCESS_KEY)
-console.log(AWS_SECRET_KEY)
-console.log(S3_BUCKET)
+
+// make sure AWS Keys are working 
+// console.log(AWS_ACCESS_KEY)
+// console.log(AWS_SECRET_KEY)
+// console.log(S3_BUCKET)
 
 
 app.use(cookieSession( {
@@ -191,7 +193,6 @@ app.get("/logout", function(req, res){
 app.get("*", function (req, res) {
   res.render("404");
 });
-
-app.listen(3000, function(){
+app.listen(process.env.PORT || 80, function(){
 console.log("THIS IS SPARTA");
 });

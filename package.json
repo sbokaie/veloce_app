@@ -27,5 +27,8 @@
     "sequelize": "^1.7.9",
     "sequelize-cli": "^0.2.3",
     "session": "^0.1.0"
+  },
+  "devDependencies": {
+    "supertest": "^0.13.0"
   }
 }
