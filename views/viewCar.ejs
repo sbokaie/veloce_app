@@ -1,3 +1,5 @@
+<% include partials/headers.ejs %>
+
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -8,23 +10,23 @@
 		<h1><%= vehicle.year%>
   			<%= vehicle.make %>
   			<%= vehicle.model%></h1>
+    <p>
+        <img style = "width:600px"  src="<%= vehicle.imageURL%>" alt="car pic">
+    </p>
+  	<p> Year:
+  		 	<%= vehicle.year%>
+  	</p>
+  	<p> Make:
+  			<%= vehicle.make %>
+  	</p>
+  	<p> Model:
+  			<%= vehicle.model%>
+  	</p>
+  	<p>
+  			<%= vehicle.description%>
+  	</p>
 
-  		 	<p> Year:
-  		 		<%= vehicle.year%>
-  		 	</p>
-  			<p> Make:
-  				<%= vehicle.make %>
-  			</p>
-  			<p> Model:
-  				<%= vehicle.model%>
-  			</p>
-  			<p>
-  				<%= vehicle.description%>
-  			</p>
-
-  			<p>
-					<img style = "width:200px"  src="<%= vehicle.imageURL%>" alt="This is the car">
-  			</p>
+  			
   						
 		<a href="/inventory">Go back to the inventory</a>
 	</body>

@@ -1,3 +1,4 @@
+<% include /partials/headers.ejs %>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -8,14 +9,16 @@
 	
 	<h2>Car Image:</h2>
 <input type="file" id="files"/>
-<p id="status">Please select a file</p>
+<p id="status">Please upload an image</p>
 <div style="border:1px solid gray; width:200px height:200px;"  id="preview"></div>
 
   <form action="/newcar" method = "post">
   	<input type="hidden" id="avatar_url" name="avatar_url">
 	<p>
+	<br>
 		<label for="make">Make:</label>
 		<input type="text" name="make" id="make">
+	</br>
 	</p>
 	
 	<p>
@@ -30,7 +33,9 @@
 
 	<p>	
 		<label for="description">Description:</label>
-		<textarea name="description" id="description" cols="30" rows="10"></textarea>
+	<p>
+		<textarea name="description" id="description" cols="50" rows="10"></textarea>
+		</p>
 	</p>
 	<input type="submit" value="Save car">
 

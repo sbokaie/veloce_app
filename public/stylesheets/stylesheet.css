@@ -1,10 +1,39 @@
-.red{
+.login {
 	background-image: url("http://3.bp.blogspot.com/-LKQtSxSkwBA/UXvYgfjUXlI/AAAAAAAAAvs/eYVaSKv8rLI/s1600/startlm70.JPG");
+	text-align: center;
+	color: black;
+}
+
+#make {
+	width-left: auto;
+	width-right: auto;
+}
+
+.signup {
+	background-image: url("http://s.petrolicious.com/2014/feature/07-jul/le-mans-classic-20.jpg");
+	text-align: center;
+	color: black;
+}
+
+.inventory {
+	text-align: center;
+	background-color:#CDC9C9;
+}
+
+.logout {
+	text-align: right;
+}
+
+.box {
+	background-color: #CDC9C9;
+}
+
+.homepageheadline {
 	text-align: center;
 	color: white;
 }
 
-.homepageheadline {
+.main {
 	text-align: center;
 	color: white;
 }

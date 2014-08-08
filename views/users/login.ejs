@@ -5,10 +5,19 @@
 	<title>Login</title>
 </head>
 <body>	
+<body class="login">
+<div class="box col-md-4">
   <h2>Login here</h2>
 	  <form action="/login" method="post">
-  		<label for="user">Username: </label> <input type="text" name="username" id="username">
-  		<label for="password">Password: </label> <input type="password" name="password" id="password">
-  		<input type="submit" value="Login!" class = "btn btn-primary">
+	  	<p>
+  			<label for="user">Username: </label> <input type="text" name="username" id="username" placeholder="enter your username.." required>
+	  	</p>
+	   	<p>
+  			<label for="password">Password: </label> <input type="password" name="password" id="password" placeholder="enter your password.." required>
+  	  	</p>
+  	  	<p>
+  			<input type="submit" value="Login!" class = "btn btn-primary">
+		</p>
+</div>
 </body>
 </html>
