@@ -9,9 +9,12 @@
     "host": "127.0.0.1",
     "dialect": "postgres"
   },
-  "production": {
-    "database": "veloce_production",
-    "host": "127.0.0.1",
-    "dialect": "postgres"
-  }
+  "production":  {
+        "dialect": "postgres",
+        "username": "ztcfziyabblvul",
+        "password": "b2H_qrPQgHNU5Sbhsuc7PrhUZ1",
+        "host": "ec2-54-243-49-82.compute-1.amazonaws.com",
+        "port": "5432",
+        "database": "d7apimhn1u1pc1"
+    }
 }
